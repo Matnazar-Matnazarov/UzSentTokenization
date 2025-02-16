@@ -11,4 +11,4 @@ class IndexView(View):
     def post(self, request):
         text = request.POST.get('text')
         tokens = func2(text)
-        return JsonResponse({'status': 'success', 'tokens': tokens})
+        return JsonResponse({'status': 'success', 'tokens': tokens[0], 'error_tokens': tokens[1]})

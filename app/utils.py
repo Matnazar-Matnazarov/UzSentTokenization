@@ -9,11 +9,7 @@ sintaksis_dict = {
     "nima bo'l", "nima bo'ldi", "nima bo'lyapti", "nima bo'ladi"
 }
 
-def yuklama_check(s:str):
-    for i in ['mi', 'chi', 'ya',]:
-        if s.endswith(i):
-            return True
-    return False
+
 
 def func(s:str):
     
@@ -28,9 +24,25 @@ def func(s:str):
             k += i
     for i in r:
         t = i.lower()
-        if t in sintaksis_dict or yuklama_check(t):
+        if t in sintaksis_dict:
             a = True
     return a
 
 def func2(text):
-    return [i for i in UST.tokenize(text) if func(i)]
+    # s = ""
+    # with open("tokenized.txt", "w") as f:
+    #     f.write(s)
+    a, r = [], []
+    for i in UST.tokenize(text):
+        if func(i):
+            k = i
+            if not i.endswith('?'):
+                for p in '.!':
+                        if p in k:
+                            k = k.replace(p, '')
+                k+='?'
+            a.append(k)
+        else:
+            if i.endswith('?'):
+                r.append(i)
+    return a, r
