@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block title %}UzSentTokenization - So'zlar{% endblock %}
+
+{% block content %}
+<!-- Theme persistence script -->
+<script>
+    // Immediately set theme from localStorage to prevent flash
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+</script>
+
+<!-- Enhanced Hero Section -->
+<div class="relative isolate overflow-hidden mb-8">
+    <div class="absolute inset-0 -z-10 opacity-[0.02] dark:opacity-[0.05]"></div>
+    <div class="hero min-h-[20vh] backdrop-blur-sm">
+        <div class="hero-content text-center">
+            <div class="max-w-2xl animate__animated animate__fadeInDown">
+                <h1 class="text-4xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
+                    UzSentTokenization
+                </h1>
+                <p class="text-lg text-base-content/70 font-medium">
+                    So'zlarni boshqarish tizimi
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced Main Content -->
+<div class="card bg-base-100/90 shadow-2xl hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] dark:hover:shadow-[0_20px_50px_rgba(139,_92,_246,_0.3)] transition-all duration-500 backdrop-blur-xl">
+    <div class="card-body">
+        <!-- Enhanced Add Form -->
+        <form id="addForm" class="mb-8 group">
+            {% csrf_token %}
+            <div class="flex gap-4">
+                <div class="relative flex-1">
+                    <input 
+                        type="text" 
+                        name="word" 
+                        class="input input-bordered input-lg w-full pr-12 transition-all duration-300 focus:input-primary"
+                        placeholder="Yangi so'z kiriting..."
+                    >
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg gap-2 hover:scale-105 transition-transform duration-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Qo'shish
+                </button>
+            </div>
+        </form>
+
+        <!-- Enhanced Table -->
+        <div class="overflow-x-auto rounded-xl border border-base-300">
+            <table class="table table-zebra w-full">
+                <thead class="bg-base-200/50 backdrop-blur">
+                    <tr>
+                        <th class="text-base">ID</th>
+                        <th class="text-base">So'z</th>
+                        <th class="text-base">Yaratilgan vaqt</th>
+                        <th class="text-base text-right">Amallar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for token in uzsenttokenization %}
+                    <tr class="hover:bg-base-200/50 transition-colors duration-200">
+                        <td class="font-mono">{{ token.id }}</td>
+                        <td class="font-medium">{{ token.word }}</td>
+                        <td class="font-mono text-base-content/70">{{ token.created_at|date:"d-m-Y H:i" }}</td>
+                        <td class="text-right">
+                            <button 
+                                onclick="deleteToken({{ token.id }})" 
+                                class="btn btn-error btn-sm gap-2 hover:scale-105 transition-transform duration-300"
+                            >
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                                O'chirish
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Enhanced form submission with theme-aware loading state
+    document.getElementById('addForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const word = this.word.value;
+        
+        if (!word.trim()) {
+            showToast('So\'z kiritilmadi!', 'error');
+            return;
+        }
+        
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalContent = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = `
+            <span class="loading loading-spinner"></span>
+            <span class="dark:text-base-content">Qo'shilmoqda...</span>
+        `;
+        
+        fetch('/uzsenttokenization/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: 'word=' + encodeURIComponent(word)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showToast('So\'z muvaffaqiyatli qo\'shildi!');
+                location.reload();
+            } else {
+                showToast(data.message || 'Xatolik yuz berdi', 'error');
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalContent;
+            }
+        })
+        .catch(error => {
+            console.error('Xato:', error);
+            showToast('Serverda xatolik yuz berdi', 'error');
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalContent;
+        });
+    });
+
+    // Theme-aware delete confirmation
+    function deleteToken(id) {
+        Swal.fire({
+            title: 'Tasdiqlash',
+            text: "Haqiqatan ham bu so'zni o'chirmoqchimisiz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ha, o\'chirish',
+            cancelButtonText: 'Bekor qilish',
+            customClass: {
+                popup: 'rounded-2xl dark:bg-base-200 dark:text-base-content',
+                confirmButton: 'btn btn-error',
+                cancelButton: 'btn btn-ghost dark:hover:bg-base-300'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/uzsenttokenization/${id}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showToast('So\'z muvaffaqiyatli o\'chirildi!');
+                        location.reload();
+                    } else {
+                        showToast(data.message || 'Xatolik yuz berdi', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Xato:', error);
+                    showToast('Serverda xatolik yuz berdi', 'error');
+                });
+            }
+        });
+    }
+
+    // Initialize theme from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.classList.add('transition-colors', 'duration-300');
+    });
+
+    // Run on navigation
+    document.addEventListener('turbolinks:load', () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    });
+</script>
+{% endblock %}

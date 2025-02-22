@@ -1,55 +1,119 @@
-<!DOCTYPE html>
-<html lang="uz" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UzSentTokenization</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body class="min-h-screen bg-gradient-to-br from-base-200 to-base-300">
-    <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Hero Section -->
-        <div class="hero mb-12">
-            <div class="hero-content text-center">
-                <div class="scale-in">
-                    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                        UzSentTokenization
-                    </h1>
-                    <p class="text-xl text-base-content/70 max-w-3xl animate-fade-in">
-                        Matnlarni professional darajada tokenlashtirish uchun eng zamonaviy yechim
-                    </p>
+{% extends 'base.html' %}
+
+{% block title %}UzSentTokenization - Asosiy{% endblock %}
+
+{% block content %}
+<!-- Theme persistence script should be moved to head section -->
+<script>
+    // Immediately set theme from localStorage to prevent flash
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+</script>
+
+<!-- Enhanced Hero Section with better dark mode support -->
+<div class="relative isolate overflow-hidden">
+    <div class="absolute inset-0 -z-10 opacity-[0.02] dark:opacity-[0.05]" 
+         style="background-image: url('data:image/svg+xml,...');"></div>
+    
+    <div class="hero min-h-[40vh] backdrop-blur-sm">
+        <div class="hero-content text-center">
+            <div class="max-w-4xl animate__animated animate__fadeInDown">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent drop-shadow-xl transition-colors duration-300">
+                    UzSentTokenization
+                </h1>
+                <p class="text-xl md:text-2xl text-base-content/70 font-medium animate__animated animate__fadeIn animate__delay-1s transition-colors duration-300">
+                    Matnlarni professional darajada tokenlashtirish uchun eng zamonaviy yechim
+                </p>
+                <!-- Enhanced Feature badges with dark mode support -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <span class="badge badge-lg badge-primary gap-2 transition-all duration-300">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Tezkor
+                    </span>
+                    <span class="badge badge-lg badge-secondary gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                        </svg>
+                        Aniq
+                    </span>
+                    <span class="badge badge-lg badge-accent gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        Xavfsiz
+                    </span>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <!-- Input Card -->
-            <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 sticky top-8 backdrop-blur-lg bg-opacity-90">
+<!-- Enhanced Main Content with dark mode support -->
+<div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Input Card with enhanced dark mode -->
+        <div class="relative">
+            <div class="card bg-base-100 shadow-2xl hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] dark:hover:shadow-[0_20px_50px_rgba(139,_92,_246,_0.3)] transition-all duration-500 sticky top-24 backdrop-blur-xl bg-opacity-95 dark:bg-opacity-90 border border-primary/10">
                 <div class="card-body">
                     <h2 class="card-title text-3xl gap-3 mb-6 group">
-                        <svg class="w-8 h-8 text-primary transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-10 h-10 text-primary transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
-                        <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Matn kiriting</span>
+                        <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-black">Matn kiriting</span>
                     </h2>
+                    
+                    <!-- New File Upload UI -->
+                    <div class="absolute -top-4 right-4">
+                        <div class="dropdown dropdown-end">
+                            <label tabindex="0" class="btn btn-circle btn-lg btn-primary shadow-lg hover:shadow-primary/50">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                            </label>
+                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52">
+                                <li>
+                                    <label for="file-upload" class="flex items-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                                        </svg>
+                                        Fayl yuklash
+                                    </label>
+                                    <input 
+                                        type="file" 
+                                        id="file-upload" 
+                                        class="hidden" 
+                                        accept=".txt,.doc,.docx,.pdf"
+                                        onchange="handleFileUpload(this)"
+                                    />
+                                </li>
+                                <li>
+                                    <a href="#" onclick="pasteFromClipboard()">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                        </svg>
+                                        Clipboarddan
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <form id="tokenForm" class="space-y-8" method="post" action="/">
                         {% csrf_token %}
                         <div class="form-control w-full">
-                            <div class="relative">
+                            <div class="relative group">
                                 <textarea 
                                     name="text" 
                                     id="text" 
                                     rows="16"
-                                    class="textarea textarea-bordered textarea-lg focus:textarea-primary w-full resize-none text-lg transition-all duration-300 hover:shadow-md focus:shadow-lg"
+                                    class="textarea textarea-bordered textarea-lg focus:textarea-primary w-full resize-none text-lg transition-all duration-300 hover:shadow-lg focus:shadow-xl rounded-2xl border-2 group-hover:border-primary"
                                     placeholder="Bu yerga matningizni kiriting..."
                                 ></textarea>
                                 <button 
                                     onclick="clearTextArea()" 
-                                    class="btn btn-ghost btn-sm btn-circle absolute top-2 right-2 hover:bg-base-200"
+                                    class="btn btn-circle absolute top-2 right-2 bg-base-200 hover:bg-error hover:text-white transition-all duration-300 border-2 hover:scale-110"
                                     title="Tozalash"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,14 +122,14 @@
                                 </button>
                             </div>
                             <label class="label">
-                                <span class="label-text-alt badge badge-primary badge-outline" id="charCount">0 ta belgi</span>
+                                <span class="label-text-alt badge badge-primary badge-lg animate-pulse" id="charCount">0 ta belgi</span>
                             </label>
                         </div>
                         <button 
                             type="submit" 
-                            class="btn btn-primary btn-lg w-full gap-3 hover:scale-[1.02] transition-transform duration-300 shadow-lg hover:shadow-xl"
+                            class="btn btn-primary btn-lg w-full gap-3 hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-primary/50 rounded-xl group font-bold text-lg"
                         >
-                            <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 group-hover:animate-bounce transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                             Tokenlarni olish
@@ -73,339 +137,555 @@
                     </form>
                 </div>
             </div>
+        </div>
 
-            <!-- Results Card -->
-            <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-lg bg-opacity-90">
-                <div class="card-body">
-                    <div class="sticky top-0 z-10 bg-base-100 pb-4 bg-opacity-90 backdrop-blur">
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <!-- Results Card with enhanced dark mode -->
+        <div class="card bg-base-100 shadow-2xl hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] dark:hover:shadow-[0_20px_50px_rgba(139,_92,_246,_0.3)] transition-all duration-500 backdrop-blur-xl bg-opacity-95 dark:bg-opacity-90 border border-primary/10">
+            <div class="card-body">
+                <!-- Results Header with Stats -->
+                <div class="sticky top-0 z-10 bg-base-100/95 backdrop-blur pb-4">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-between items-center">
                             <h2 class="card-title text-3xl gap-3 group">
-                                <svg class="w-8 h-8 text-primary transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-10 h-10 text-primary transition-all duration-500 group-hover:rotate-[360deg]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                                 </svg>
-                                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Natija</span>
+                                <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-black">Natija</span>
                             </h2>
-                            <button 
-                                onclick="copyAllTokens()" 
-                                class="btn btn-outline btn-primary btn-sm gap-2 hover:scale-105 transition-transform duration-300"
-                            >
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                                </svg>
-                                Hammasini nusxalash
-                            </button>
+                            <div class="flex gap-2">
+                                <button 
+                                    onclick="exportResults()" 
+                                    id="exportBtn"
+                                    class="btn btn-success btn-sm gap-2 hover:scale-110 transition-all duration-300 rounded-xl font-bold shadow-lg hover:shadow-success/50 hidden"
+                                >
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                    </svg>
+                                    Eksport
+                                </button>
+                                <button 
+                                    onclick="copyAllTokens()" 
+                                    class="btn btn-primary btn-sm gap-2 hover:scale-110 transition-all duration-300 rounded-xl font-bold shadow-lg hover:shadow-primary/50"
+                                >
+                                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                    Hammasini nusxalash
+                                </button>
+                            </div>
                         </div>
-                        <div class="divider before:bg-gradient-to-r before:from-primary/20 before:to-secondary/20 after:bg-gradient-to-l after:from-primary/20 after:to-secondary/20"></div>
+                        
+                        <!-- Stats Bar -->
+                        <div class="stats stats-horizontal shadow bg-base-200/50 backdrop-blur">
+                            <div class="stat">
+                                <div class="stat-title">To'g'ri yozilgan so'roq gaplar</div>
+                                <div class="stat-value text-primary" id="totalTokens">0</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-title">So'roq belgisi xatolar</div>
+                                <div class="stat-value text-error" id="errorTokens">0</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-title">Aniqlik</div>
+                                <div class="stat-value text-success" id="accuracy">0%</div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="result" class="max-h-[calc(100vh-12rem)] overflow-y-auto scrollbar-thin">
-                        <div class="flex items-center justify-center h-full">
-                            <p class="text-base-content/60 text-lg text-center animate-pulse">Natijalar bu yerda ko'rsatiladi</p>
-                        </div>
+                    <div class="divider before:bg-gradient-to-r before:from-primary before:via-secondary before:to-accent after:bg-gradient-to-l after:from-primary after:via-secondary after:to-accent"></div>
+                </div>
+
+                <!-- Results Content -->
+                <div id="result" class="max-h-[calc(100vh-16rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-base-200">
+                    <div class="flex items-center justify-center h-full">
+                        <p class="text-base-content/60 text-xl font-medium text-center animate-pulse">Natijalar bu yerda ko'rsatiladi</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+{% endblock %}
 
-    <script>
-        // Character counter
-        document.getElementById('text').addEventListener('input', function(e) {
-            document.getElementById('charCount').textContent = `${e.target.value.length} ta belgi`;
-        });
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script>
+    // Theme handling improvements
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.classList.add('transition-colors', 'duration-300');
+    }
 
-        document.getElementById('tokenForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const text = document.getElementById('text').value;
-            const resultDiv = document.getElementById('result');
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', initializeTheme);
+
+    // Run on navigation (for SPA-like behavior)
+    document.addEventListener('turbolinks:load', initializeTheme);
+
+    // Enhanced theme toggle
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Apply transition class before changing theme
+        html.classList.add('transition-colors', 'duration-300');
+        
+        // Update theme
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Remove transition class after animation
+        setTimeout(() => {
+            html.classList.remove('transition-colors', 'duration-300');
+        }, 300);
+    }
+
+    // Character counter
+    document.getElementById('text').addEventListener('input', function(e) {
+        document.getElementById('charCount').textContent = `${e.target.value.length} ta belgi`;
+    });
+
+    document.getElementById('tokenForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const text = document.getElementById('text').value;
+        const resultDiv = document.getElementById('result');
+        
+        resultDiv.innerHTML = showLoading();
+        
+        fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: 'text=' + encodeURIComponent(text)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Kelgan data:', data);
             
-            resultDiv.innerHTML = showLoading();
-            
-            fetch('/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                },
-                body: 'text=' + encodeURIComponent(text)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Kelgan data:', data);
-                
-                let tokens = [];
-                if (typeof data.tokens === 'string') {
-                    tokens = data.tokens.split(',');
-                } else if (Array.isArray(data.tokens)) {
-                    tokens = data.tokens;
-                }
+            let tokens = [];
+            if (typeof data.tokens === 'string') {
+                tokens = data.tokens.split(',');
+            } else if (Array.isArray(data.tokens)) {
+                tokens = data.tokens;
+            }
 
-                // Handle error tokens
-                if (data.error_tokens && data.error_tokens.length > 0) {
-                    showErrorTokensAlert(data.error_tokens);
-                }
+            const errorTokens = data.error_tokens || [];
 
-                if (tokens.length > 0) {
-                    resultDiv.innerHTML = displayTokens(tokens, data.error_tokens || []);
-                    animateTokens();
-                } else {
-                    resultDiv.innerHTML = `
-                        <div class="flex items-center justify-center h-full">
-                            <p class="text-gray-500 text-lg text-center">Tokenlar topilmadi</p>
-                        </div>
-                    `;
-                }
-            })
-            .catch(error => {
-                console.error('Xato:', error);
-                resultDiv.innerHTML = showError(error.message);
-            });
-        });
+            // Statistikani yangilash
+            updateStats(tokens, errorTokens);
 
-        function copyToken(button) {
-            const tokenElement = button.parentElement.querySelector('[data-token]');
-            const token = tokenElement.getAttribute('data-token');
-            
-            navigator.clipboard.writeText(token).then(() => {
-                // Show copy feedback with enhanced animation
-                const originalSvg = button.innerHTML;
-                button.innerHTML = `
-                    <svg class="w-6 h-6 text-success animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
+            if (data.error_tokens && data.error_tokens.length > 0) {
+                showErrorTokensAlert(data.error_tokens);
+            }
+
+            if (tokens.length > 0) {
+                resultDiv.innerHTML = displayTokens(tokens, errorTokens);
+                animateTokens();
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="flex items-center justify-center h-full">
+                        <p class="text-gray-500 text-lg text-center">Tokenlar topilmadi</p>
+                    </div>
                 `;
-                
-                setTimeout(() => {
-                    button.innerHTML = originalSvg;
-                }, 1500);
-            });
-        }
+                // Statistikani nolga tushirish
+                updateStats([], []);
+            }
+        })
+        .catch(error => {
+            console.error('Xato:', error);
+            resultDiv.innerHTML = showError(error.message);
+            // Xatolik yuz berganda statistikani nolga tushirish
+            updateStats([], []);
+        });
+    });
 
-        function copyAllTokens() {
-            const tokens = Array.from(document.querySelectorAll('[data-token]'))
-                .map(el => el.getAttribute('data-token'))
-                .join('\n');
+    function copyToken(button) {
+        const tokenElement = button.parentElement.querySelector('[data-token]');
+        const token = tokenElement.getAttribute('data-token');
+        
+        navigator.clipboard.writeText(token).then(() => {
+            // Show copy feedback with enhanced animation
+            const originalSvg = button.innerHTML;
+            button.innerHTML = `
+                <svg class="w-6 h-6 text-success animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            `;
             
-            navigator.clipboard.writeText(tokens).then(() => {
-                showToast('Barcha tokenlar nusxalandi');
-            });
-        }
+            setTimeout(() => {
+                button.innerHTML = originalSvg;
+            }, 1500);
+        });
+    }
 
-        function animateTokens() {
-            const tokens = document.querySelectorAll('.token-item');
-            tokens.forEach((token, index) => {
-                token.style.animationDelay = `${index * 0.1}s`;
-                token.classList.add('scale-in');
-            });
-        }
+    function copyAllTokens() {
+        const tokens = Array.from(document.querySelectorAll('[data-token]'))
+            .map(el => el.getAttribute('data-token'))
+            .join('\n');
+        
+        navigator.clipboard.writeText(tokens).then(() => {
+            showToast('Barcha tokenlar nusxalandi');
+        });
+    }
 
-        function displayTokens(tokens, errorTokens = []) {
-            return `
-                <div class="grid gap-4 animate-fade-in">
-                    ${tokens.map((token, index) => {
-                        const isError = errorTokens.includes(token.trim());
-                        return `
-                            <div class="token-item card card-compact ${isError ? 'bg-error/10' : 'bg-base-200'} hover:shadow-md transition-all duration-300 hover:scale-[1.02] group">
-                                <div class="card-body flex-row items-center gap-4">
-                                    <div class="badge ${isError ? 'badge-error' : 'badge-primary'} badge-lg group-hover:scale-110 transition-transform">${index + 1}</div>
-                                    <div class="flex-grow font-medium break-all group-hover:text-primary transition-colors" data-token="${token.trim()}">
-                                        ${token.trim()} ${isError ? '<span class="text-error">(?)</span>' : ''}
-                                    </div>
-                                    <button onclick="copyToken(this)" class="btn btn-ghost btn-sm btn-square tooltip tooltip-left hover:bg-primary/10 transition-colors" data-tip="Nusxa olish">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-8m-10 0v-2a2 2 0 012-2h4.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V17a2 2 0 01-2 2h-2M15 2h.01"/>
-                                        </svg>
-                                    </button>
-                                </div>
+    function animateTokens() {
+        const tokens = document.querySelectorAll('.token-item');
+        tokens.forEach((token, index) => {
+            token.style.animationDelay = `${index * 0.1}s`;
+            token.classList.add('scale-in');
+        });
+    }
+
+    // Global o'zgaruvchilar
+    let allTokens = [];
+    let allErrorTokens = [];
+
+    function displayTokens(tokens, errorTokens = []) {
+        allTokens = tokens;
+        allErrorTokens = errorTokens;
+        
+        // Eksport tugmasini ko'rsatish
+        document.getElementById('exportBtn').classList.remove('hidden');
+        
+        const displayTokens = tokens.slice(0, 100);
+        const hasMore = tokens.length > 100;
+        
+        return `
+            <div class="grid gap-4 animate-fade-in">
+                ${displayTokens.map((token, index) => `
+                    <div class="token-item card card-compact ${errorTokens.includes(token.trim()) ? 'bg-error/10' : 'bg-base-200'} hover:shadow-md transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="card-body flex-row items-center gap-4">
+                            <div class="badge ${errorTokens.includes(token.trim()) ? 'badge-error' : 'badge-primary'} badge-lg group-hover:scale-110 transition-transform">${index + 1}</div>
+                            <div class="flex-grow font-medium break-all group-hover:text-primary transition-colors" data-token="${token.trim()}">
+                                ${token.trim()} ${errorTokens.includes(token.trim()) ? '<span class="text-error">(?)</span>' : ''}
                             </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-        }
-
-        function showLoading() {
-            return `
-                <div class="flex items-center justify-center h-full">
-                    <div class="flex flex-col items-center gap-4">
-                        <span class="loading loading-spinner loading-lg text-primary"></span>
-                        <p class="text-primary font-semibold animate-pulse">Yuklanmoqda...</p>
+                            <button onclick="copyToken(this)" class="btn btn-ghost btn-sm btn-square tooltip tooltip-left hover:bg-primary/10 transition-colors" data-tip="Nusxa olish">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-8m-10 0v-2a2 2 0 012-2h4.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V17a2 2 0 01-2 2h-2M15 2h.01"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `;
-        }
-
-        function showError(message) {
-            return `
-                <div class="flex items-center justify-center h-full">
-                    <div class="alert alert-error shadow-lg animate-shake">
+                `).join('')}
+                ${hasMore ? `
+                    <div class="alert alert-info shadow-lg">
                         <svg class="w-6 h-6 stroke-current shrink-0" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span>Xatolik yuz berdi: ${message}</span>
+                        <div>
+                            <h3 class="font-bold">Diqqat!</h3>
+                            <div class="text-sm">Faqat dastlabki 100 ta natija ko'rsatilmoqda. Barcha natijalarni ko'rish uchun "Eksport" tugmasini bosing.</div>
+                        </div>
                     </div>
-                </div>
-            `;
-        }
+                ` : ''}
+            </div>
+        `;
+    }
 
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'toast toast-end';
-            toast.innerHTML = `
-                <div class="alert alert-success shadow-lg animate-slide-up">
-                    <svg class="w-5 h-5 stroke-current shrink-0" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    function showLoading() {
+        return `
+            <div class="flex items-center justify-center h-full">
+                <div class="flex flex-col items-center gap-4">
+                    <span class="loading loading-spinner loading-lg text-primary"></span>
+                    <p class="text-primary font-semibold animate-pulse">Yuklanmoqda...</p>
+                </div>
+            </div>
+        `;
+    }
+
+    function showError(message) {
+        return `
+            <div class="flex items-center justify-center h-full">
+                <div class="alert alert-error shadow-lg animate-shake">
+                    <svg class="w-6 h-6 stroke-current shrink-0" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <span>${message}</span>
+                    <span>Xatolik yuz berdi: ${message}</span>
                 </div>
-            `;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2000);
-        }
+            </div>
+        `;
+    }
 
-        // Add new function to display error tokens with SweetAlert2
-        function showErrorTokensAlert(errorTokens) {
-            const errorTokensList = errorTokens.map(token => `<li class="text-left">❌ "${token}" - to'g'ri yozilmagan so'z</li>`).join('');
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast toast-end';
+        toast.innerHTML = `
+            <div class="alert alert-success shadow-lg animate-slide-up">
+                <svg class="w-5 h-5 stroke-current shrink-0" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>${message}</span>
+            </div>
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+    }
+
+    function exportResults() {
+        // CSV fayllarni yaratish
+        const tokensCsv = convertToCSV(allTokens.map((token, index) => ({
+            'No': index + 1,
+            'Gap': token,
+            'Turi': 'To\'g\'ri yozilgan so\'roq gap'
+        })));
+
+        const errorTokensCsv = convertToCSV(allErrorTokens.map((token, index) => ({
+            'No': index + 1,
+            'Gap': token,
+            'Xatolik turi': 'So\'roq belgisi xato qo\'yilgan gap'
+        })));
+
+        // ZIP fayl yaratish
+        const zip = new JSZip();
+        zip.file("tokens.csv", tokensCsv);
+        zip.file("error_tokens.csv", errorTokensCsv);
+
+        // ZIP faylni yuklab olish
+        zip.generateAsync({type: "blob"}).then(function(content) {
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            saveAs(content, `tokenization_results_${timestamp}.zip`);
+            showToast('Natijalar muvaffaqiyatli eksport qilindi');
+        });
+    }
+
+    function convertToCSV(arr) {
+        if (arr.length === 0) return '';
+        
+        const headers = Object.keys(arr[0]);
+        const rows = [
+            headers.join(','),
+            ...arr.map(obj => headers.map(header => `"${obj[header]}"`).join(','))
+        ];
+        
+        return rows.join('\n');
+    }
+
+    function showErrorTokensAlert(errorTokens) {
+        const displayErrors = errorTokens.slice(0, 10);
+        const remainingCount = errorTokens.length - 10;
+        
+        const errorTokensList = displayErrors
+            .map(token => `<li class="text-left">❌ "${token}" - so'roq belgisi xato qo'yilgan gap</li>`)
+            .join('');
+        
+        Swal.fire({
+            title: '<strong>So\'roq belgisi xatolar aniqlandi</strong>',
+            icon: 'warning',
+            html: `
+                <div class="text-left">
+                    <p class="mb-3">Quyidagi gaplarda so'roq belgisi xato qo'yilgan:</p>
+                    <ul class="space-y-2">
+                        ${errorTokensList}
+                        ${remainingCount > 0 ? `
+                            <li class="text-left text-info mt-4">
+                                <i>... va yana ${remainingCount} ta xatolik. To'liq ro'yxatni eksport qilib ko'rishingiz mumkin.</i>
+                            </li>
+                        ` : ''}
+                    </ul>
+                    <p class="mt-3 text-sm text-gray-600">Iltimos, gaplarni tekshirib, so'roq belgisini to'g'ri qo'yib qayta kiriting.</p>
+                </div>
+            `,
+            showCloseButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Tushundim',
+            confirmButtonColor: '#3085d6',
+            customClass: {
+                container: 'sweet-alert-custom',
+                popup: 'rounded-lg',
+                title: 'text-xl font-bold text-warning',
+                htmlContainer: 'py-4'
+            }
+        });
+    }
+
+    // Tozalash funksiyasini qo'shamiz
+    function clearTextArea() {
+        document.getElementById('text').value = '';
+        document.getElementById('charCount').textContent = '0 ta belgi';
+    }
+
+    function handleFileUpload(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        // Faylni yuklash animatsiyasini ko'rsatish
+        const textarea = document.getElementById('text');
+        textarea.value = 'Fayl yuklanmoqda...';
+        textarea.disabled = true;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/import/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            textarea.disabled = false;
             
-            Swal.fire({
-                title: '<strong>Xatoliklar aniqlandi</strong>',
-                icon: 'warning',
-                html: `
-                    <div class="text-left">
-                        <p class="mb-3">Quyidagi so'zlar to'g'ri yozilmagan:</p>
-                        <ul class="space-y-2">
-                            ${errorTokensList}
-                        </ul>
-                        <p class="mt-3 text-sm text-gray-600">Iltimos, so'zlarni tekshirib, to'g'rilab qayta kiriting.</p>
-                    </div>
-                `,
-                showCloseButton: true,
-                showConfirmButton: true,
-                confirmButtonText: 'Tushundim',
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    container: 'sweet-alert-custom',
-                    popup: 'rounded-lg',
-                    title: 'text-xl font-bold text-warning',
-                    htmlContainer: 'py-4'
-                }
-            });
-        }
+            if (data.status === 'success') {
+                textarea.value = data.text;
+                // Belgilar sonini yangilash
+                document.getElementById('charCount').textContent = `${data.text.length} ta belgi`;
+                showToast('Fayl muvaffaqiyatli yuklandi');
+            } else {
+                textarea.value = '';
+                showToast(data.message || 'Fayl yuklashda xatolik yuz berdi');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            textarea.disabled = false;
+            textarea.value = '';
+            showToast('Fayl yuklashda xatolik yuz berdi');
+        });
 
-        // Tozalash funksiyasini qo'shamiz
-        function clearTextArea() {
-            document.getElementById('text').value = '';
-            document.getElementById('charCount').textContent = '0 ta belgi';
-        }
-    </script>
+        // Faylni tozalash
+        input.value = '';
+    }
 
-    <style>
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+    // Clipboard dan paste
+    async function pasteFromClipboard() {
+        try {
+            const text = await navigator.clipboard.readText();
+            document.getElementById('text').value = text;
+            document.getElementById('charCount').textContent = `${text.length} ta belgi`;
+        } catch (err) {
+            showToast('Clipboarddan o\'qishda xatolik', 'error');
         }
-        .animate-fade-in {
-            animation: fade-in 0.4s ease-out forwards;
-        }
+    }
 
-        @keyframes scale-in {
-            0% { transform: scale(0.95); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+    // Statistikani yangilash funksiyasini takomillashtirish
+    function updateStats(tokens, errorTokens) {
+        const total = tokens.length;
+        const errors = errorTokens.length;
+        const accuracy = total > 0 ? ((total - errors) / total * 100).toFixed(1) : 0;
 
-        .scale-in {
-            animation: scale-in 0.3s ease-out forwards;
-        }
+        // Animatsiya bilan yangilash
+        animateNumber('totalTokens', total);
+        animateNumber('errorTokens', errors);
+        animateNumber('accuracy', accuracy, '%');
 
-        .token-item {
+        // Ranglarni dinamik o'zgartirish
+        const accuracyElement = document.getElementById('accuracy');
+        if (accuracy >= 90) {
+            accuracyElement.classList.remove('text-warning', 'text-error');
+            accuracyElement.classList.add('text-success');
+        } else if (accuracy >= 70) {
+            accuracyElement.classList.remove('text-success', 'text-error');
+            accuracyElement.classList.add('text-warning');
+        } else {
+            accuracyElement.classList.remove('text-success', 'text-warning');
+            accuracyElement.classList.add('text-error');
+        }
+    }
+
+    // Raqamlarni animatsiya bilan yangilash
+    function animateNumber(elementId, finalValue, suffix = '') {
+        const element = document.getElementById(elementId);
+        const startValue = parseInt(element.textContent) || 0;
+        const duration = 1000; // 1 sekund
+        const steps = 60;
+        const increment = (finalValue - startValue) / steps;
+        let currentStep = 0;
+
+        const animation = setInterval(() => {
+            currentStep++;
+            const currentValue = startValue + (increment * currentStep);
+            
+            if (elementId === 'accuracy') {
+                element.textContent = currentValue.toFixed(1) + suffix;
+            } else {
+                element.textContent = Math.round(currentValue) + suffix;
+            }
+
+            if (currentStep >= steps) {
+                clearInterval(animation);
+                // Aniq qiymatni o'rnatish
+                element.textContent = finalValue + suffix;
+            }
+        }, duration / steps);
+    }
+
+    // Drag-and-drop handling
+    const dropZone = document.getElementById('text');
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('textarea-primary');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('textarea-primary');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('textarea-primary');
+        
+        const files = e.dataTransfer.files;
+        if (files.length) {
+            const input = document.getElementById('file-upload');
+            input.files = files;
+            handleFileUpload(input);
+        }
+    });
+</script>
+
+<style>
+    /* Enhanced dark mode transitions */
+    :root {
+        --transition-duration: 300ms;
+    }
+
+    /* Smooth theme transitions */
+    *,
+    *::before,
+    *::after {
+        transition: background-color var(--transition-duration) ease-in-out,
+                    border-color var(--transition-duration) ease-in-out,
+                    color var(--transition-duration) ease-in-out,
+                    box-shadow var(--transition-duration) ease-in-out;
+    }
+
+    /* Dark mode specific styles */
+    [data-theme='dark'] .card {
+        background-color: hsl(var(--b1) / 0.7);
+        backdrop-filter: blur(12px);
+    }
+
+    [data-theme='dark'] .glass-morphism {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Prevent transition flicker */
+    .transition-theme {
+        transition: none !important;
+    }
+
+    /* Enhanced animations */
+    @keyframes scale-in {
+        from {
             opacity: 0;
-            transform: translateY(20px);
-            animation: slideUp 0.5s ease forwards;
+            transform: scale(0.95) translateY(10px);
         }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
 
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .animate-shake {
-            animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes slide-up {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .animate-slide-up {
-            animation: slide-up 0.3s ease-out;
-        }
-
-        .hover-scale {
-            transition: transform 0.2s ease;
-        }
-
-        .hover-scale:hover {
-            transform: scale(1.02);
-        }
-
-        .loading-pulse {
-            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .scrollbar-thin::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 3px;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 3px;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
-
-        .token-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        @media (max-width: 1024px) {
-            .token-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Glass morphism effect */
-        .glass {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Smooth transitions */
-        * {
-            transition: all 0.2s ease-in-out;
-        }
-    </style>
-</body>
-</html>
+    .scale-in {
+        animation: scale-in 0.3s ease-out forwards;
+    }
+</style>
+{% endblock %}
