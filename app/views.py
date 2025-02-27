@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View
-from .models import UzSentTokenization, Yuklamalar
+from .models import UzSentTokenization, Yuklamalar, Istisno
 from .utils import func2
 import pandas as pd
+
 
 class YuklamalarView(View):
     def get(self, request):
@@ -113,4 +114,23 @@ class IndexImportView(View):
                 'status': 'error',
                 'message': f'Xatolik yuz berdi: {str(e)}'
             })
+    
+
+class IstisnoView(View):
+    def get(self, request):
+        istisno = Istisno.objects.all()
+        return render(request, 'istisno.html', {'istisno': istisno})
+    def post(self, request):
+        word = request.POST.get('word')
+        if word:
+            Istisno.objects.create(word_istisno=word)
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Word is required'})
+    def delete(self, request, id):
+        try:
+            Istisno.objects.filter(id=id).first().delete()
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error', 'message': 'Word not found'})
     

@@ -1,6 +1,5 @@
 from UzSentTokenization import UzSentTokenizer as UST
-from .models import UzSentTokenization, Yuklamalar
-
+from .models import UzSentTokenization, Yuklamalar, Istisno
 
 def func3(s:str):
     a = set(Yuklamalar.objects.values_list('word_yuklamalar', flat=True))
@@ -33,6 +32,7 @@ def func(s:str):
         return False
         
     sintaksis_dict = set(UzSentTokenization.objects.values_list('word', flat=True))
+    istisno_dict = set(Istisno.objects.values_list('word_istisno', flat=True))
     for i in r:
         t = i.lower()
         if t in sintaksis_dict:
@@ -41,8 +41,12 @@ def func(s:str):
     # Oxirgi so'zni tekshirish
     if r and func3(r[-1]):  # r bo'sh emasligini tekshiramiz
         a = True
+    r = ' '.join(r)
+    for i in istisno_dict:
+        if i in r:
+            print(i)
+            return False
     return a
-
 
 def func2(text):
     if not text:  # Bo'sh matn tekshiruvi
@@ -67,3 +71,4 @@ def func2(text):
             if i.endswith('?'):
                 r.append(i)
     return a, r
+

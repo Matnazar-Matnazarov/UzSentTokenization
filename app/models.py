@@ -28,3 +28,17 @@ class Yuklamalar(models.Model):
         indexes = [
             models.Index(fields=['word_yuklamalar'], name='word_yuklamalar'),
         ]
+
+
+class Istisno(models.Model):
+    word_istisno = models.CharField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.word_istisno
+
+    class Meta:
+        verbose_name = 'Istisno'
+        verbose_name_plural = 'Istisno'
+        indexes = [
+            models.Index(fields=['word_istisno'], name='word_istisno'),
+        ]
